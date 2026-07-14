@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+// Until secretbuttons.com points at this deployment, absolute URLs (og:image)
+// must use the live host, not the custom domain.
+const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://secretbuttons.com"),
+  metadataBase: new URL(baseUrl),
   title: {
     default: "The Secret Buttons",
     template: "%s - The Secret Buttons",
@@ -12,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "The Secret Buttons",
     type: "website",
-    images: ["/images/the_secret_buttons_banner-1.png"],
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
   },
 };
 
