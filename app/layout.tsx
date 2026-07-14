@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_ID = "G-RM41V067HE";
 
 // Until secretbuttons.com points at this deployment, absolute URLs (og:image)
 // must use the live host, not the custom domain.
@@ -29,6 +32,18 @@ export default function RootLayout({
     <html lang="en-US">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/wtc6zza.css" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </head>
       <body>
         <div className="site-container">
