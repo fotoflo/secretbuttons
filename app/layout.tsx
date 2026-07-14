@@ -29,9 +29,6 @@ export default function RootLayout({
           {children}
           <footer className="site-footer">
             <p>
-              <img src="/images/logo-white.png" alt="The Secret Buttons" />
-            </p>
-            <p>
               &copy; {new Date().getFullYear()} Ellen M. Shapiro &middot;{" "}
               <a href="mailto:ellen@visualanguage.net">ellen@visualanguage.net</a>
             </p>

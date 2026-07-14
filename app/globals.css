@@ -264,6 +264,7 @@ figcaption {
   padding: 16px 30px;
   background-color: var(--red);
   color: #fff;
+  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
@@ -341,14 +342,10 @@ figcaption {
   color: #fff;
   text-align: center;
   background-color: transparent;
-  padding: 40px 0;
+  padding: 40px 20px;
   font-size: 15px;
-}
-
-.site-footer img {
-  height: 40px;
-  width: auto;
-  margin-bottom: 10px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .site-footer a {
@@ -416,6 +413,11 @@ figcaption {
 
   .break-line {
     display: inline;
+  }
+
+  /* The -20px pull-up tucks the banner under the white header on mobile */
+  .moveup {
+    margin-top: 0 !important;
   }
 }
 

@@ -16,7 +16,10 @@ export default function StudyGuide() {
         <main className="entry-content" style={{ paddingTop: 30 }}>
           <p className="text-red" style={{ fontSize: 30 }}>
             <strong>
-              <Link href="/guide-downloads">
+              <Link
+                href="/guide-downloads"
+                style={{ textDecoration: "underline" }}
+              >
                 Click here to download your free 26-page Interactive Study Guide
                 PDF
               </Link>
