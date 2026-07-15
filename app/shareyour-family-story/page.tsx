@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = { title: "Your Stories" };
 
@@ -66,6 +67,8 @@ export default function YourStories() {
                   Upload Your Story here
                 </a>
               </p>
+
+              <ShareButtons text="Share your family's immigration story on The Secret Buttons" />
             </div>
 
             <div className="col-golden-right">

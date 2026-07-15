@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import EmailCapture from "@/components/EmailCapture";
 import { baseUrl } from "@/lib/site";
 
 const bookJsonLd = {
@@ -39,10 +40,12 @@ export default function Home() {
               width={1554}
               height={1307}
               priority
+              fetchPriority="high"
               sizes="(max-width: 1554px) 100vw, 1554px"
               style={{ width: "100%", height: "auto" }}
             />
           </figure>
+          <EmailCapture />
         </main>
       </div>
     </>

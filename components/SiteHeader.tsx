@@ -49,12 +49,18 @@ const menu = [
   },
 ];
 
-export default function SiteHeader({ title }: { title?: string }) {
+export default function SiteHeader({
+  title,
+  sticky,
+}: {
+  title?: string;
+  sticky?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <header className="site-header">
+    <header className={`site-header${sticky ? " sticky" : ""}`}>
       {title ? (
         <div className="entry-title-area">
           <h1>{title}</h1>

@@ -3,13 +3,26 @@ import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = { title: "Thank you" };
 
-export default function ThankYou() {
+const messages: Record<string, string> = {
+  newsletter: "You're on the list! We'll email you when new materials are added.",
+  event: "Your invitation is on its way to Ellen — she'll be in touch soon.",
+  order: "Your signed-copy request is on its way to Ellen — she'll reply with details.",
+};
+
+export default async function ThankYou({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  const message = (from && messages[from]) || "Thank you for downloading.";
+
   return (
     <>
       <SiteHeader title="Thank you" />
       <div className="site-inner">
         <main id="main-content" className="entry-content">
-          <p>Thank you for downloading.</p>
+          <p>{message}</p>
 
           <div style={{ height: 40 }} aria-hidden="true" />
 

@@ -1,36 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-
-const RESEND_URL = "https://api.resend.com/emails";
-
-async function sendEmail(to: string[], subject: string, html: string) {
-  const res = await fetch(RESEND_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.FORM_EMAIL_FROM,
-      to,
-      subject,
-      html,
-    }),
-  });
-  if (!res.ok) {
-    console.error("Resend error:", res.status, await res.text());
-  }
-  return res.ok;
-}
-
-function esc(v: FormDataEntryValue | null) {
-  return String(v ?? "")
-    .slice(0, 500)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
+import { sendEmail, esc } from "@/lib/email";
+import { baseUrl } from "@/lib/site";
 
 export async function submitDownloadForm(formData: FormData) {
   // Honeypot: real visitors leave this blank
@@ -50,21 +22,51 @@ export async function submitDownloadForm(formData: FormData) {
   const city = esc(formData.get("city"));
   const state = esc(formData.get("state"));
   const zip = esc(formData.get("zip"));
+  const ellen = process.env.FORM_EMAIL_TO!;
 
-  const summary = `
-    <h2>New guide download signup</h2>
-    <table cellpadding="4">
-      <tr><td><b>Name</b></td><td>${name}</td></tr>
-      <tr><td><b>Email</b></td><td>${email}</td></tr>
-      <tr><td><b>Organization</b></td><td>${organization}</td></tr>
-      <tr><td><b>City</b></td><td>${city}, ${state} ${zip}</td></tr>
-    </table>`;
+  await sendEmail({
+    to: [ellen],
+    subject: `Guide download: ${name} (${organization})`,
+    html: `
+      <h2>New guide download signup</h2>
+      <table cellpadding="4">
+        <tr><td><b>Name</b></td><td>${name}</td></tr>
+        <tr><td><b>Email</b></td><td>${email}</td></tr>
+        <tr><td><b>Organization</b></td><td>${organization}</td></tr>
+        <tr><td><b>City</b></td><td>${city}, ${state} ${zip}</td></tr>
+      </table>`,
+  });
 
-  await sendEmail(
-    [process.env.FORM_EMAIL_TO!],
-    `Guide download: ${name} (${organization})`,
-    summary
-  );
+  const submitterEmail = String(formData.get("email") ?? "");
+  if (submitterEmail.includes("@")) {
+    await sendEmail({
+      to: [submitterEmail],
+      replyTo: ellen,
+      subject: "Your Secret Buttons guides",
+      html: `
+        <p>Hi ${name},</p>
+        <p>Thanks for your interest in <i>The Secret Buttons</i>! Here are your free downloads:</p>
+        <ul>
+          <li><a href="${baseUrl}/downloads/The-Secret-Buttons-Study-Guide_SlideShow-1.pdf">26-page Interactive Study Guide (PDF)</a></li>
+          <li><a href="${baseUrl}/downloads/The-Secret-Buttons-Teachers-Guide.pdf">Teacher&rsquo;s Guide (PDF)</a></li>
+        </ul>
+        <p>Questions? Just reply to this email.</p>
+        <p>— Ellen M. Shapiro</p>`,
+    });
+
+    const followUp = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
+    await sendEmail({
+      to: [submitterEmail],
+      replyTo: ellen,
+      scheduledAt: followUp.toISOString(),
+      subject: "How did The Secret Buttons guides work for you?",
+      html: `
+        <p>Hi ${name},</p>
+        <p>Two weeks ago you downloaded the study and teacher&rsquo;s guides for <i>The Secret Buttons</i>. I&rsquo;d love to hear how they worked in your classroom or book club — what resonated, what could be better.</p>
+        <p>Just hit reply; I read every note.</p>
+        <p>— Ellen M. Shapiro<br/>ellen@visualanguage.net</p>`,
+    });
+  }
 
   console.log(
     "Guide download signup:",

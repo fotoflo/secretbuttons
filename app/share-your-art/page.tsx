@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = { title: "Your Art" };
 
@@ -45,6 +46,8 @@ export default function YourArt() {
                   UPLOAD YOUR ART HERE
                 </a>
               </p>
+
+              <ShareButtons text="Share your art on The Secret Buttons" />
             </div>
 
             <div className="col-half">

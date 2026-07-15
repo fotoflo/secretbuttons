@@ -49,6 +49,11 @@ export default function RootLayout({
         <div className="site-container">
           {children}
           <footer className="site-footer">
+            <p className="footer-nav">
+              <a href="/for-educators">For Educators</a> ·{" "}
+              <a href="/events">Events</a> · <a href="/map">The Journey</a> ·{" "}
+              <a href="/faq">FAQ</a>
+            </p>
             <p>
               &copy; {new Date().getFullYear()} Ellen M. Shapiro &middot;{" "}
               <a href="mailto:ellen@visualanguage.net">ellen@visualanguage.net</a>

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import OutboundLink from "@/components/OutboundLink";
+import FormTimer from "@/components/FormTimer";
+import { requestSignedCopies } from "@/app/contact-actions";
 
 export const metadata: Metadata = { title: "Order" };
 
@@ -10,18 +13,17 @@ const AMAZON_URL =
 export default function Order() {
   return (
     <>
-      <SiteHeader title="Order" />
+      <SiteHeader title="Order" sticky />
       <div className="site-inner">
         <main id="main-content" className="entry-content">
           <h2>
-            <a
+            <OutboundLink
               className="text-red"
               href={AMAZON_URL}
-              target="_blank"
-              rel="noreferrer noopener"
+              destination="amazon"
             >
               on Amazon.
-            </a>
+            </OutboundLink>
           </h2>
 
           <p>
@@ -30,13 +32,30 @@ export default function Order() {
           </p>
 
           <p>
-            <a
+            <OutboundLink
               href="https://TheAlphagramShop.etsy.com"
-              target="_blank"
-              rel="noreferrer noopener"
+              destination="etsy"
             >
               TheAlphagramShop.etsy.com
-            </a>
+            </OutboundLink>
+          </p>
+
+          <p>
+            Also on{" "}
+            <OutboundLink
+              href="https://bookshop.org/search?keywords=The%20Secret%20Buttons%20Ellen%20Shapiro"
+              destination="bookshop"
+            >
+              Bookshop.org
+            </OutboundLink>{" "}
+            (supports independent bookstores) — and see what readers say on{" "}
+            <OutboundLink
+              href="https://www.goodreads.com/search?q=The+Secret+Buttons+Ellen+Shapiro"
+              destination="goodreads"
+            >
+              Goodreads
+            </OutboundLink>
+            .
           </p>
 
           <div className="row" style={{ marginTop: 40 }}>
@@ -133,6 +152,50 @@ export default function Order() {
                 <strong>$8.95</strong>
               </p>
             </div>
+          </div>
+
+          <div className="row" style={{ marginTop: 50 }}>
+            <div className="col-half">
+              <h3 className="text-blue">Request signed copies</h3>
+              <p>
+                Tell Ellen how many you&rsquo;d like and how to inscribe them
+                — she&rsquo;ll reply with details.
+              </p>
+              <form className="download-form" action={requestSignedCopies}>
+                <FormTimer />
+                <div className="honeypot" aria-hidden="true">
+                  <label htmlFor="sc-website">Leave this field blank.</label>
+                  <input id="sc-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+                <label htmlFor="sc-name">
+                  Name <span className="required">*</span>
+                </label>
+                <input id="sc-name" name="name" type="text" required />
+                <label htmlFor="sc-email">
+                  Email <span className="required">*</span>
+                </label>
+                <input id="sc-email" name="email" type="email" required />
+                <label htmlFor="sc-qty">
+                  How many copies? <span className="required">*</span>
+                </label>
+                <input
+                  id="sc-qty"
+                  name="quantity"
+                  type="number"
+                  min={1}
+                  max={500}
+                  required
+                />
+                <label htmlFor="sc-note">
+                  Inscription or note (who is it for?)
+                </label>
+                <textarea id="sc-note" name="note" rows={3} />
+                <button className="button" type="submit">
+                  Request signed copies
+                </button>
+              </form>
+            </div>
+            <div className="col-half" />
           </div>
         </main>
       </div>

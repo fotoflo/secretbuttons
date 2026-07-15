@@ -364,6 +364,216 @@ figcaption {
   overflow: hidden;
 }
 
+/* ---- Interactive extras ------------------------------------------------ */
+
+.page-transition {
+  display: contents;
+}
+
+@media not (prefers-reduced-motion: reduce) {
+  .page-transition {
+    display: block;
+    animation: fadein 0.4s;
+  }
+}
+
+.lightbox-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 15, 17, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+}
+
+.lightbox-overlay p {
+  color: #fff;
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 44px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (not (prefers-reduced-motion: reduce)) {
+  .entry-content figure img,
+  .lightbox-trigger img {
+    transition: transform 0.25s ease-in-out;
+  }
+
+  .entry-content figure:hover img,
+  .lightbox-trigger:hover img {
+    transform: scale(1.02);
+  }
+}
+
+.share-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.share-buttons a {
+  font-size: 16px;
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  color: var(--blue);
+  padding: 8px 14px;
+}
+
+.share-buttons a:hover {
+  color: #fff;
+  background: var(--blue);
+}
+
+.email-capture {
+  margin: 10px auto 40px;
+  max-width: 640px;
+  text-align: center;
+}
+
+.email-capture label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.email-capture-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.email-capture input[type="email"] {
+  flex: 1 1 260px;
+  max-width: 340px;
+  font-family: inherit;
+  font-size: 18px;
+  padding: 12px 14px;
+  border: 1px solid #999;
+  border-radius: 8px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--red);
+  padding: 14px 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.faq-item summary:hover {
+  color: var(--red);
+}
+
+.faq-item > div {
+  padding: 10px 0 4px;
+}
+
+.route-list {
+  list-style: none;
+  padding: 0;
+  border-left: 2px solid var(--red);
+}
+
+.route-list li {
+  padding: 0 0 18px 16px;
+  color: #000 !important;
+}
+
+.route-list li strong {
+  color: var(--blue);
+}
+
+.route-note {
+  font-size: 18px;
+}
+
+.download-form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 18px;
+  padding: 10px 12px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.site-header.sticky {
+  position: sticky;
+  top: 0;
+}
+
+figcaption,
+.gallery-caption {
+  color: #000;
+}
+
+/* ---- Print ------------------------------------------------------------- */
+
+@media print {
+  body {
+    background: #fff;
+    font-size: 12pt;
+  }
+
+  .nav-primary,
+  .menu-toggle,
+  .site-footer,
+  .share-buttons,
+  .email-capture,
+  .button,
+  .skip-link {
+    display: none !important;
+  }
+
+  .entry-title-area h1 {
+    font-size: 40pt;
+    letter-spacing: -2px;
+  }
+
+  .entry-content a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+  }
+}
+
 /* ---- Footer ------------------------------------------------------------ */
 
 .site-footer {

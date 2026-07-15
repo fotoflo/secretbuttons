@@ -9,6 +9,10 @@ const routes = [
   "/share-your-art",
   "/how-to-order",
   "/guide-downloads",
+  "/for-educators",
+  "/events",
+  "/map",
+  "/faq",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

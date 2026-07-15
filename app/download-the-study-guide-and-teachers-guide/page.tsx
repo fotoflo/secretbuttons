@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import Lightbox from "@/components/Lightbox";
 
 export const metadata: Metadata = {
   title: "The Study Guide and the Teacher's Guide",
@@ -57,28 +57,28 @@ export default function StudyGuide() {
           <div className="row" style={{ marginTop: 40 }}>
             <div className="col-third">
               <figure>
-                <Image
+                <Lightbox
                   src="/images/the_secret_buttons_illustration-1.jpg"
                   alt="The Secret Buttons study guide cover"
                   width={1000}
                   height={789}
                   sizes="(max-width: 840px) 100vw, 33vw"
-                  style={{ width: "100%", height: "auto" }}
+                  caption="Study guide cover"
                 />
-                <figcaption>Cover</figcaption>
+                <figcaption>Cover (click to enlarge)</figcaption>
               </figure>
             </div>
             <div className="col-third">
               <figure className="aligncenter">
-                <Image
+                <Lightbox
                   src="/images/anni_and_rosies_journey.jpg"
                   alt="Anni and Rosie's journey — sample inside page"
                   width={1000}
                   height={789}
                   sizes="(max-width: 840px) 100vw, 33vw"
-                  style={{ width: "100%", height: "auto" }}
+                  caption="Sample inside page — Anni & Rosie's journey"
                 />
-                <figcaption>Sample inside page</figcaption>
+                <figcaption>Sample inside page (click to enlarge)</figcaption>
               </figure>
             </div>
             <div className="col-third">
@@ -121,6 +121,14 @@ export default function StudyGuide() {
               </ul>
             </div>
           </div>
+
+          <p style={{ marginTop: 30 }}>
+            Teaching the book?{" "}
+            <Link href="/for-educators">
+              See everything for educators in one place
+            </Link>
+            .
+          </p>
         </main>
       </div>
     </>

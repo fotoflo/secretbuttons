@@ -89,6 +89,14 @@ export default function GuideDownloads() {
                   Submit
                 </button>
               </form>
+
+              <p style={{ marginTop: 20, fontSize: 18 }}>
+                In a hurry?{" "}
+                <a href="/thank-you">
+                  Skip the form and go straight to the downloads
+                </a>
+                .
+              </p>
             </div>
             <div className="col-golden-right" />
           </div>
