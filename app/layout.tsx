@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import GaPageView from "@/components/GaPageView";
+import { baseUrl } from "@/lib/site";
 import "./globals.css";
 
 const GA_ID = "G-RM41V067HE";
-
-// Until secretbuttons.com points at this deployment, absolute URLs (og:image)
-// must use the live host, not the custom domain.
-const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -46,6 +42,10 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <GaPageView gaId={GA_ID} />
         <div className="site-container">
           {children}
           <footer className="site-footer">

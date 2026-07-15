@@ -13,7 +13,7 @@ export default function StudyGuide() {
       {/* The original site hides the big page title on this page */}
       <SiteHeader />
       <div className="site-inner">
-        <main className="entry-content" style={{ paddingTop: 30 }}>
+        <main id="main-content" className="entry-content" style={{ paddingTop: 30 }}>
           <p className="text-red" style={{ fontSize: 30 }}>
             <strong>
               <Link

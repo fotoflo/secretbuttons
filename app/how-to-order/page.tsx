@@ -12,7 +12,7 @@ export default function Order() {
     <>
       <SiteHeader title="Order" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <h2>
             <a
               className="text-red"

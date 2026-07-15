@@ -9,7 +9,7 @@ export default function YourArt() {
     <>
       <SiteHeader title="Your Art" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <div className="row">
             <div className="col-half">
               <p>

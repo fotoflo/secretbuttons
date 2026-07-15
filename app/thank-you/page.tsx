@@ -8,7 +8,7 @@ export default function ThankYou() {
     <>
       <SiteHeader title="Thank you" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <p>Thank you for downloading.</p>
 
           <div style={{ height: 40 }} aria-hidden="true" />

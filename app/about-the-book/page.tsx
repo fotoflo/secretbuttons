@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 export const metadata: Metadata = { title: "Hello!" };
 
@@ -9,7 +10,7 @@ export default function AboutTheBook() {
     <>
       <SiteHeader title="Hello!" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <h2 className="text-blue">
             I&rsquo;m Ellen Shapiro, <br />a writer and graphic designer
           </h2>
@@ -55,20 +56,11 @@ export default function AboutTheBook() {
               </p>
 
               <figure style={{ marginTop: 20 }}>
-                <a
-                  href="https://youtu.be/4Yg6eyZf3gc"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <Image
-                    src="/images/the_secret_buttons_video-1.jpg"
-                    alt="Watch the video about The Secret Buttons"
-                    width={1200}
-                    height={710}
-                    sizes="(max-width: 840px) 100vw, 62vw"
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </a>
+                <YouTubeEmbed
+                  videoId="4Yg6eyZf3gc"
+                  thumbnail="/images/the_secret_buttons_video-1.jpg"
+                  title="Flip through the pages of The Secret Buttons"
+                />
               </figure>
 
               <p className="text-blue" style={{ fontSize: 18, marginTop: 20 }}>

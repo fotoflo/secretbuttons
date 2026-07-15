@@ -9,7 +9,7 @@ export default function YourStories() {
     <>
       <SiteHeader title="Your Stories" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <div className="row">
             <div className="col-golden-left">
               <p className="text-blue">

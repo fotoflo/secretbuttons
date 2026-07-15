@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
+import FormTimer from "@/components/FormTimer";
 import { submitDownloadForm } from "./actions";
 
 export const metadata: Metadata = { title: "Download the Guides" };
@@ -9,7 +10,7 @@ export default function GuideDownloads() {
     <>
       <SiteHeader title="Download the Guides" />
       <div className="site-inner">
-        <main className="entry-content">
+        <main id="main-content" className="entry-content">
           <div className="row">
             <div className="col-golden-left">
               <p>
@@ -19,6 +20,7 @@ export default function GuideDownloads() {
               </p>
 
               <form className="download-form" action={submitDownloadForm}>
+                <FormTimer />
                 <div className="form-row">
                   <div>
                     <label htmlFor="name">
